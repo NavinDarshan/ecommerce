@@ -20,18 +20,6 @@ class login extends React.Component{
           console.log(this.props.auth.isAuthenticated)
         }
       }
-    
-      componentWillReceiveProps(nextProps) {
-        if (nextProps.auth.isAuthenticated) {
-          this.props.history.push("/user");
-        }
-    
-        if (nextProps.errors) {
-          this.setState({
-            errors: nextProps.errors
-          });
-        }
-      }
     changeHandle(event){
         this.setState({ [event.target.name] : event.target.value});
         event.preventDefault();

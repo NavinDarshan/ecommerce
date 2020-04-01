@@ -17,6 +17,16 @@ class order extends React.Component {
                 console.log(res.data.order)
             })
     }
+    deleteFromCart(product) {
+        axios.post("/api/user/orderdelete" , {userid : this.props.user_id , product : product , email : this.props.user_mail })
+        .then((res) =>{
+            axios.get("/api/user/order/" + this.props.user_id)
+            .then(res => {
+                const ordervalues = res.data;
+                this.setState({ products: ordervalues.order })
+            })
+        })
+      }
     render() {
         const {products} = this.state
         return (

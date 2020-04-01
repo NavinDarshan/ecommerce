@@ -11,7 +11,7 @@ Route.post("/register", (req, res) => {
     console.log("api entered")
     User.findOne({ email: req.body.email }).then(user => {
         if (user) {
-            return res.status(400).json({ email: "Email already Exists" });
+            res.json({success:false, flashMessage: "User Already Exist"})
         } else {
             const newUser = new User({
                 email: req.body.email,
@@ -22,7 +22,7 @@ Route.post("/register", (req, res) => {
                     if (err) throw err;
                     newUser.password = hash;
                     newUser.save()
-                        .then(user => { console.log(user), res.json(user) })
+                        .then(user => { console.log(user), res.json({user , success:true, flashMessage: "Successfully Registered"}) })
                         .catch(err => console.log(err));
                 })
             })
@@ -38,7 +38,7 @@ Route.post("/login", (req, res) => {
         console.log("user")
         console.log(user)
         if (!user) {
-            return res.status(400).json({ emailNotFound: "EmailNotFound" })
+            res.json({success: false, flashMessage: "Invalid Username or Password"})
         }
         console.log("login user")
         console.log(user)
@@ -65,9 +65,7 @@ Route.post("/login", (req, res) => {
                     }
                 );
             } else {
-                return res
-                    .status(400)
-                    .json({ passwordincorrect: "Password incorrect" });
+                res.json({success: false, flashMessage:"Invalid Username or Password"});
             }
         }
         )
@@ -183,6 +181,25 @@ Route.get("/order/:id", (req, res) => {
                 res.send(userorders)
             }
         })
+})
+Route.post("/orderdelete", (req, res) => {
+    console.log("entered");
+    User.findById((req.body.userid), (err, foundUser) => {
+        if (err) {
+            console.log(err)
+        }
+        else {
+            foundUser.order.pull(req.body.product._id)
+            foundUser.save((err, save) => {
+                if (err) {
+                    console.log(err)
+                } else {
+                    res.send("success")
+                }
+            })
+        }
+
+    })
 })
 
 
