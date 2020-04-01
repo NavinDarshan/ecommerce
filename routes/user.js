@@ -92,7 +92,7 @@ Route.get("/products" ,(req,res) =>{
     })
 })
 Route.post("/cart" , (req,res) =>{
-    console.log(req.body)
+    
 })
 
 

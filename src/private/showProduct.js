@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import './Product.css'
+import {connect} from 'react-redux'
 import Navebar from '../containers/navbar'
 
 class showProducts extends React.Component {
@@ -19,8 +20,7 @@ class showProducts extends React.Component {
       })
   }
   addtoCart(id) {
-    axios.post("api/user/cart", id);
-    console.log(id)
+    axios.post("/api/user/cart/" , {userid : this.props.user_id , productid : id});
   }
   render() {
     const { products } = this.state;
@@ -58,7 +58,13 @@ class showProducts extends React.Component {
     )
   }
 }
-export default showProducts;
+
+const mapStateToProps = (state) => {
+  return{
+    user_id : state.auth.user.id
+  }
+}
+export default connect(mapStateToProps)(showProducts);
 
 
 
