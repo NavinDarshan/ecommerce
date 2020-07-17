@@ -1,0 +1,20 @@
+.loginBgImage{
+    background-image: url('../Pictures/login.jpg');
+    background-size: cover;
+    height: 100vh;
+
+}
+.container{
+    height: 100%;
+    align-content: center;
+}
+.login-content{
+    width: 400px;
+    height: 300px;
+    padding: 25px;
+    border: 1px solid whitesmoke;
+    background-color: rgba(72, 142, 151, 0.5);
+}
+.link{
+    color: purple;
+}
