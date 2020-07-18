@@ -3,6 +3,7 @@ const Route = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user');
+const Products = require('../models/products')
 const passport = require('passport');
 const keys = require('../config/key')
 
@@ -69,5 +70,29 @@ Route.post("/login" , (req ,res) =>{
         )
     });
 });
+Route.post("/postproducts" , (req , res) => {
+    console.log("req.body")
+    console.log(req.body)
+    const newProduct = new Products({
+        productName : req.body.productName,
+        price : req.body.price,
+        category : req.body.category
+    })
+    .save()
+    console.log("new Product")
+    console.log(newProduct)
+})
+Route.get("/products" ,(req,res) =>{
+    Products.find({category : "phone"} , (err , products) =>{
+        if(err){
+            console.log(err)
+        }else{
+            res.json(products)
+
+            console.log(products);
+        }
+    })
+})
+
 
 module.exports = Route

@@ -5,6 +5,8 @@ import * as serviceWorker from './serviceWorker';
 import Login from './containers/login'
 import Signup from './containers/signup';
 import User from './containers/user';
+import Products from './containers/products'
+import Postproducts from './orders/postproducts'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
@@ -13,9 +15,9 @@ import {createStore , combineReducers , applyMiddleware}   from 'redux';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import authReducer from "./reducer/authReducer";
-import errorReducer from "./reducer/errorReducer";
+import errorReducer from './reducer/errorReducer'
 
-const rootReducer = combineReducers({auth: authReducer,errors: errorReducer});
+ const rootReducer = combineReducers({auth: authReducer,errors: errorReducer});
 const store = createStore(rootReducer, applyMiddleware(logger,thunk));
 
 
@@ -39,6 +41,8 @@ ReactDOM.render(
       <Route path = '/login' component={Login}/>
       <Route path = '/signup' component={Signup}/>
       <Route path ='/user'   component={User} />
+      <Route path = '/postproducts' component = {Postproducts}/>
+      <Route path = '/products' component = {Products} />
     </Router>
     </Provider>
   </React.StrictMode>,

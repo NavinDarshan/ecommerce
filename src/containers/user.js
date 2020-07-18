@@ -45,6 +45,26 @@ class user extends React.Component {
                         </div>
                     ))}
                 </Slider>
+                <div className="card-content">
+                    <div className="text-center row">
+                        {products.map((note, i) => {
+                            return (
+                                <div className="col-md-3 col-sm-6" key={note._id}>
+                                    <div className="carduser">
+                                    <img class="card-img-top" src={note.imgUrl} alt="Card image cap"/>
+                                        <div className="card-body">
+                                            <h5 className="card-text ">{note.name}</h5>
+                                            <p className="card-text ">{note.price}</p>
+                                            <button className = "btn btn-primary">Buy Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
+                        }
+                        )}
+
+                    </div>
+                </div>
             </div>
 
         )
