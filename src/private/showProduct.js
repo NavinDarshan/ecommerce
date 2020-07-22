@@ -18,7 +18,7 @@ class showProducts extends React.Component {
       })
   }
   addtoCart(id){
-    axios.post("api/product/cart",id)
+    axios.post("api/product/cart",id);
   }
   render() {
     const { products } = this.state;
