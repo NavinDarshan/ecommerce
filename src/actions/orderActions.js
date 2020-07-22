@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING } from "./actionTypes";
+import { GET_ERRORS, SET_CURRENT_USER, USER_LOADING , GET_DATA_SUCCESS} from "./actionTypes";
 export const order = (url, Data, history) => (dispatch) => {
     console.log("userdata")
     console.log(Data)
@@ -14,8 +14,6 @@ export const order = (url, Data, history) => (dispatch) => {
         );
 };
 export const postProducts = (url, Data, history) => (dispatch) => {
-    console.log("userdata")
-    console.log(Data)
     axios
         .post("/api/user/postproducts", Data)
         .then(res => res.send("success"))
@@ -32,7 +30,7 @@ export const getProducts = (url , history) =>{
         axios.get(url)
         .then(response =>{
             dispatch({
-                type : SET_CURRENT_USER,
+                type : GET_DATA_SUCCESS,
                 data : response.data
             });
         })

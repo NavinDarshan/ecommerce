@@ -24,7 +24,7 @@ class user extends React.Component {
                                 <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
                             </li>
                             <li className="nav-item">
-                                <a className="nav-link" href="#">Your Orders</a>
+                                <a className="nav-link" href="/showproduct">Show Products</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="#">Deals Of The Day</a>

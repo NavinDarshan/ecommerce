@@ -3,7 +3,6 @@ const Route = express.Router();
 const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('../models/user');
-const Products = require('../models/products')
 const passport = require('passport');
 const keys = require('../config/key')
 
@@ -88,7 +87,6 @@ Route.get("/products" ,(req,res) =>{
             console.log(err)
         }else{
             res.json(products)
-
             console.log(products);
         }
     })

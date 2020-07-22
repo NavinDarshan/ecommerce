@@ -7,6 +7,8 @@ import Signup from './containers/signup';
 import User from './containers/user';
 import Products from './containers/products'
 import Postproducts from './orders/postproducts'
+import createProduct from './private/createProduct'
+import showProduct from './private/showProduct'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
@@ -15,9 +17,9 @@ import {createStore , combineReducers , applyMiddleware}   from 'redux';
 import logger from 'redux-logger'
 import thunk from 'redux-thunk'
 import authReducer from "./reducer/authReducer";
-import errorReducer from './reducer/errorReducer'
+import ProductReducer from './reducer/productReducer'
 
- const rootReducer = combineReducers({auth: authReducer,errors: errorReducer});
+const rootReducer = combineReducers({auth: authReducer,prod : ProductReducer});
 const store = createStore(rootReducer, applyMiddleware(logger,thunk));
 
 
@@ -40,9 +42,11 @@ ReactDOM.render(
     <Router>
       <Route path = '/login' component={Login}/>
       <Route path = '/signup' component={Signup}/>
-      <Route path ='/user'   component={User} />
+      <Route path ='/'  exact   component={User} />
       <Route path = '/postproducts' component = {Postproducts}/>
       <Route path = '/products' component = {Products} />
+      <Route path ='/createproduct' component = {createProduct}/>
+      <Route path = '/showproduct' component = {showProduct}/>
     </Router>
     </Provider>
   </React.StrictMode>,
