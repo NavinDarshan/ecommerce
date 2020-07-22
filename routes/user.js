@@ -42,11 +42,13 @@ Route.post("/login" , (req ,res) =>{
         }
         console.log("login user")
         console.log(user)
+        console.log(user.email)
         bcrypt.compare(password , user.password).then(isMatch => {
             if(isMatch){
                 const payload = {
                     id:user.id,
-                    name : user.name
+                    name : user.name,
+                    email : user.email
                 };
                 jwt.sign(
                     payload,
@@ -57,7 +59,8 @@ Route.post("/login" , (req ,res) =>{
                     (err, token) => {
                       res.json({
                         success: true,
-                        token: "Bearer " + token
+                        token: "Bearer " + token,
+                        user : user
                       });
                     }
                   );
@@ -93,9 +96,36 @@ Route.get("/products" ,(req,res) =>{
     })
 })
 Route.post("/cart" , (req,res) =>{
-    console.log("req.body")
-    console.log(req.body.product.name)
-    console.log(req.body.product.price)
+    const email = req.body.email;
+    console.log(req.body.product)
+    console.log(req.body.product._id)
+    User.findOne({email : email} , (err , foundUser) => {
+        if(err){
+            console.log(err)
+        }else{
+            foundUser.cart.push(req.body.product._id)
+            foundUser.save((err, save) =>{
+                if(err){
+                    console.log(err)
+                }else{
+                    console.log("added to cart")
+                }
+            })
+        }
+    })
+})
+Route.get("/cart/:id" , (req , res) =>{
+    console.log("entered")
+    User.findById(req.params.id)
+    .populate("cart")
+    .exec((err , usercart) =>{
+        if(err){
+            console.log(err)
+        } else{
+            console.log(usercart)
+            res.send(usercart)
+        }
+    })
 })
 
 

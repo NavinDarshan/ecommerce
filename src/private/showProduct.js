@@ -20,7 +20,7 @@ class showProducts extends React.Component {
       })
   }
   addtoCart(product) {
-    axios.post("/api/user/cart/" , {userid : this.props.user_id , product : product});
+    axios.post("/api/user/cart/" , {userid : this.props.user_id , product : product , email : this.props.user_mail });
   }
   render() {
     const { products } = this.state;
@@ -60,8 +60,10 @@ class showProducts extends React.Component {
 }
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return{
-    user_id : state.auth.user.id
+    user_id : state.auth.user.id,
+    user_mail : state.auth.user.email
   }
 }
 export default connect(mapStateToProps)(showProducts);
