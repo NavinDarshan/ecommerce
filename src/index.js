@@ -42,7 +42,7 @@ ReactDOM.render(
     <Router>
       <Route path = '/login' component={Login}/>
       <Route path = '/signup' component={Signup}/>
-      <Route path ='/'  exact   component={User} />
+      <Route path ='/user'  exact   component={User} />
       <Route path = '/postproducts' component = {Postproducts}/>
       <Route path = '/products' component = {Products} />
       <Route path ='/createproduct' component = {createProduct}/>

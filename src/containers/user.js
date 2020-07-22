@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import Products from './pictures'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
+import Navebar from './navbar'
 class user extends React.Component {
     handleLogOut(event) {
         this.props.logoutUser(this.props.history);
@@ -13,25 +14,7 @@ class user extends React.Component {
         const products = Products.arrayOfProducts;
         return (
             <div>
-                <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                    <a className="navbar-brand" href="#">ShopFree.com</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarNavDropdown">
-                        <ul className="navbar-nav">
-                            <li className="nav-item active">
-                                <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/showproduct">Show Products</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="#">Deals Of The Day</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+                <Navebar />
                 <Slider autoplay={500}>
                     {products.map((item, index) => (
                         <div

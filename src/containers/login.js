@@ -17,6 +17,7 @@ class login extends React.Component{
         // If logged in and user navigates to Login page, should redirect them to dashboard
         if (this.props.auth.isAuthenticated) {
           this.props.history.push("/user");
+          console.log(this.props.auth.isAuthenticated)
         }
       }
     
