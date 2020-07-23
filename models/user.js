@@ -24,7 +24,8 @@ const UserSchema = new Schema({
     ref : "Product"
   }],
   order : [{
-    type : String,
+    type : mongoose.Schema.Types.ObjectId,
+    ref : "Product"
   }]
 });
 
