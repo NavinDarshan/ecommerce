@@ -19,8 +19,8 @@ class showProducts extends React.Component {
         this.setState({ products });
       })
   }
-  addtoCart(id) {
-    axios.post("/api/user/cart/" , {userid : this.props.user_id , productid : id});
+  addtoCart(product) {
+    axios.post("/api/user/cart/" , {userid : this.props.user_id , product : product});
   }
   render() {
     const { products } = this.state;
@@ -45,7 +45,7 @@ class showProducts extends React.Component {
                     </ul>
                     <div className="card-body">
                       <a href="#" className="btn btn-primary mr-2">Buy Now</a>
-                      <a onClick={() => this.addtoCart(Product._id)} className="btn btn-primary">Add to Cart</a>
+                      <a onClick={() => this.addtoCart(Product)} className="btn btn-primary">Add to Cart</a>
                     </div>
                   </div>
                 </div>
