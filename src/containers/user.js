@@ -5,13 +5,43 @@ import Products from './pictures'
 import Slider from 'react-animated-slider';
 import 'react-animated-slider/build/horizontal.css';
 import Navebar from './navbar'
+import axios from 'axios'
 class user extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+          products: [],
+        }
+      }
+    componentDidMount() {
+        axios.get("/api/product/getphotos")
+          .then(response => {
+            const products = response.data;
+            console.log(products)
+            this.setState({ products });
+          })
+      }
     handleLogOut(event) {
         this.props.logoutUser(this.props.history);
         event.preventDefault();
     }
+    randomNumber(num){
+        return Math.floor(Math.random() * Math.floor(num))
+    }
+    offerProducts(){
+        var offerProducts = [];
+        for(let i = 0 ; i < 5 ; i++){
+            offerProducts.push(this.state.products[this.randomNumber(6)])
+        }
+        console.log("2")
+        return offerProducts;
+
+    }
     render() {
-        const products = Products.arrayOfProducts;
+        const {products } = this.state;
+        const offerProducts = this.offerProducts()
+        console.log("1")
+        console.log(offerProducts[0])
         return (
             <div>
                 <Navebar />
@@ -19,7 +49,7 @@ class user extends React.Component {
                     {products.map((item, index) => (
                         <div
                             key={index}
-                            style={{ background: `url('${item.imgUrl}') no-repeat center center` }}
+                             style={{ background: `url('/api/product/photo/${item._id}') no-repeat center center` }}
                         >
                             <div>
                                 <h1>{item.name}</h1>
