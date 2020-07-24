@@ -10,6 +10,7 @@ import Postproducts from './orders/postproducts'
 import createProduct from './private/createProduct'
 import showProduct from './private/showProduct'
 import Cart from './orders/cart'
+import Order from './orders/order'
 import setAuthToken from './utils/setAuthToken'
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
@@ -49,6 +50,7 @@ ReactDOM.render(
       <Route path ='/createproduct' component = {createProduct}/>
       <Route path = '/showproduct' component = {showProduct}/>
       <Route path = '/cart' component = {Cart} />
+      <Route path = '/order' component = {Order} />
     </Router>
     </Provider>
   </React.StrictMode>,

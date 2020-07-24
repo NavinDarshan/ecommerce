@@ -171,12 +171,14 @@ Route.post("/order", (req, res) => {
 })
 
 Route.get("/order/:id", (req, res) => {
+    console.log("entered")
     User.findById(req.params.id)
-        .populate("cart")
+        .populate("order")
         .exec((err, userorders) => {
             if (err) {
                 console.log(err)
             } else {
+                console.log("2")
                 console.log(userorders)
                 res.send(userorders)
             }

@@ -9,13 +9,15 @@ export  const registerUser = (url , userData, history) => dispatch => {
     console.log(userData)
     axios
         .post("/api/user/register", userData)
-        .then(res => history.push("/login"))
-        .catch(err =>
+        .then(res => {
             dispatch({
-                type: GET_ERRORS,
-                payload: err.response.data
+              type: actionTypes.SET_FLASH_MESSAGE,
+              payload: res.data
             })
-        );
+          })
+          .catch(err =>
+            console.log(err)
+          );
 };
 
 export const loginUser = (url , userData) => dispatch => {
